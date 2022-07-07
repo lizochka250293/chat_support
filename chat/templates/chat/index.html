@@ -11,8 +11,9 @@
 <p>
     {% for message in messages %}
         {{message.number}} - {{message.date}}: <br>
-        {{message.message}} <br>
+        {{message.message}} - {{message.session}}<br>
     {% endfor %}
+
 </p>
 </body>
 </html>

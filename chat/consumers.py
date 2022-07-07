@@ -9,9 +9,11 @@ from .models import Number
 
 
 class ChatConsumer(AsyncWebsocketConsumer):
+
     async def connect(self):
         self.room_name = self.scope['url_route']['kwargs']['room_name']
         self.room_group_name = 'chat_%s' % self.room_name
+        self.sen = self.scope["session"]
         # self.user = self.scope["user"]
         # Join room group
 
@@ -32,7 +34,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
     async def receive(self, text_data):
         text_data_json = json.loads(text_data)
         message = text_data_json['message']
-
         await self.write_message(message)
 
         # Send message to room group
@@ -47,7 +48,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
     # Receive message from room group
     async def chat_message(self, event):
         message = event['message']
-
         # Send message to WebSocket
         await self.send(text_data=json.dumps({
             'message': message
@@ -55,7 +55,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
     @database_sync_to_async
     def write_message(self, message):
-        Number.objects.create(number=self.room_name, message=message)
+        Number.objects.create(number=self.room_name, session=self.sen, message=message)
+
 
 
 class LongPollConsumer(AsyncHttpConsumer):

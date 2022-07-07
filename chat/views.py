@@ -1,11 +1,11 @@
+from channels.db import database_sync_to_async
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from .models import Number
 
 
-
 def number(request, room_name):
-    messages = Number.objects.filter(number=room_name)
+    messages = Number.objects.filter(number=room_name).order_by('session')
     return render(request, 'chat/index.html', {"messages": messages, "room_name": room_name})
 
 
