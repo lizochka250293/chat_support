@@ -1,0 +1,8 @@
+{% extends "chat/base.html" %}
+{% block content %}
+<form action="" method="POST">
+        {% csrf_token %}
+        <input name="number" type="text" placeholder="Введите табельный номер">
+        <button type="submit">Войти</button>
+</form>
+{% endblock content %}

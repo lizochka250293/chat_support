@@ -27,21 +27,4 @@ application = ProtocolTypeRouter({
     ),
     # Just HTTP for now. (We can add other protocols later.)
 })
-# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
-#
-# from django.urls import re_path
-#
-# from channels.routing import ProtocolTypeRouter, URLRouter
-# from channels.auth import AuthMiddlewareStack
-#
-# from chat import consumers
-#
-# application = ProtocolTypeRouter({
-#
-#     "websocket": AuthMiddlewareStack(
-#         URLRouter([
-#             re_path(r"^front(end)/$", consumers.AsyncChatConsumer.as_asgi()),
-#         ])
-#     ),
-#
-# })
+
