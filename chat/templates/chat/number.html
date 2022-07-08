@@ -1,8 +1,26 @@
 {% extends "chat/base.html" %}
 {% block content %}
-<form action="" method="POST">
-        {% csrf_token %}
-        <input name="number" type="text" placeholder="Введите табельный номер">
-        <button type="submit">Войти</button>
 </form>
+<div class="container">
+        <div class="row">
+            <div class="card box-shadow m-2 form-wrap">
+                <div class="card-header text-center">
+                    <h3>Чат поддрежки </h3>
+                </div>
+                <form id="form" class="p-3" action='' method="POST">
+                    {% csrf_token %}
+                    <div class="bla_bla">
+
+                            <input name="number" type="text" placeholder="Введите табельный номер">
+
+                            <button type="submit">Войти</button>
+
+                        <hr>
+                        </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
 {% endblock content %}

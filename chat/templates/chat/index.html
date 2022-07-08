@@ -9,10 +9,14 @@
 
 <a href="/chat/{{room_name}}">Войти в чат</a>
 <p>
+
     {% for message in messages %}
-        {{message.number}} - {{message.date}}: <br>
-        {{message.message}} - {{message.session}}<br>
+        {% for i in message %}
+            {{i.date}} <br>
+            {{i.message}}<br>
+        {% endfor %}
     {% endfor %}
+
 
 </p>
 </body>
