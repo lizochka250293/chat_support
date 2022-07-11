@@ -5,3 +5,4 @@ db.sqlite3
 python manage.py runserver
 test.py
 test_2.py
+config.py

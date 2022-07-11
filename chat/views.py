@@ -2,7 +2,7 @@ from channels.db import database_sync_to_async
 from django.shortcuts import render, redirect
 from .models import Number
 import requests
-from config import api_token, channel_id
+# from config import api_token, channel_id
 def number(request, room_name):
     # messagess = Number.objects.filter(number=room_name).annotate(Min('date'))
     ses_date = []
