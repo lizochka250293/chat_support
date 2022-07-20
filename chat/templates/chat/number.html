@@ -9,15 +9,18 @@
                 <form id="form" class="p-3" action='' method="POST">
                     {% csrf_token %}
                     <div class="bla_bla">
-
-                            <input name="number" type="text" placeholder="Введите табельный номер">
-
-                            <button type="submit">Войти</button>
+                    <div class="form-error">{{ form.non_field_errors }}</div>
+                    {% for f in form %}
+                    <p><label class="'form-label" for="{{ f.id_for_label }}">{{f.label}}:</label>{{f}}</p>
+                    <div class="from-error">{{f.errors}}</div>
+                    {% endfor %}
+                        <button type="submit">Войти</button>
 
                         <hr>
                         </div>
 
                 </form>
+                <a href="{% url 'register' %}"> Регистрация</a>
             </div>
         </div>
     </div>
