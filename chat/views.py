@@ -2,15 +2,16 @@
 import requests
 from django.contrib.auth import logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, PasswordResetView, PasswordContextMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import FormMixin, CreateView
+from django.views.generic.edit import FormMixin, CreateView, FormView
 from rest_framework import generics
-from .form import RatingForm, RegisterUserForm, Auntification
+from .form import RatingForm, RegisterUserForm, Auntification, NumberForm
 from .models import Number, NumberView, Rating
 from .serializers import NumberSerializer
 
@@ -131,6 +132,17 @@ class NumberCreateApiView(generics.CreateAPIView):
 def login_out(reguest):
     logout(reguest)
     return redirect('title')
+
+# забыли свой пароль
+
+class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
+    template_name = 'chat/password_reset.html'
+    success_url = 'password_reset_confirm'
+
+
+class PasswordResetConfirmView(PasswordContextMixin, FormView):
+    template_name = 'chat/password_reset_confirm.html'
+    success_url = 'title'
 
 class AddStarRating(View):
 
